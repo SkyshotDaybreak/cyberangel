@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2tlq3vq00k6v"]
+
+[ext_resource type="Texture2D" uid="uid://b51g53w6kqmeh" path="res://cyberangel/skybox/4.png" id="1_7sym3"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3rano"]
+panorama = ExtResource("1_7sym3")
+
+[sub_resource type="Sky" id="Sky_0l8mw"]
+sky_material = SubResource("PanoramaSkyMaterial_3rano")
+
+[sub_resource type="Environment" id="Environment_wpe5o"]
+background_mode = 2
+sky = SubResource("Sky_0l8mw")
+
+[node name="dev" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wpe5o")
