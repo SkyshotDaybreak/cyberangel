@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2tlq3vq00k6v"]
+[gd_scene load_steps=8 format=3 uid="uid://c2tlq3vq00k6v"]
 
 [ext_resource type="Texture2D" uid="uid://b51g53w6kqmeh" path="res://cyberangel/skybox/4.png" id="1_7sym3"]
+[ext_resource type="PackedScene" uid="uid://bu1gpm3ptli2c" path="res://cyberangel/player.tscn" id="1_augu4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3rano"]
 panorama = ExtResource("1_7sym3")
@@ -12,7 +13,24 @@ sky_material = SubResource("PanoramaSkyMaterial_3rano")
 background_mode = 2
 sky = SubResource("Sky_0l8mw")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1b3xw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m4tvr"]
+
 [node name="dev" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_augu4")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wpe5o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_1b3xw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_m4tvr")
