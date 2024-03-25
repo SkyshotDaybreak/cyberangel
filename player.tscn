@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu1gpm3ptli2c"]
+[gd_scene load_steps=6 format=3 uid="uid://bu1gpm3ptli2c"]
+
+[ext_resource type="Script" path="res://cyberangel/PlayerController.gd" id="1_ul5yv"]
+[ext_resource type="Script" path="res://cyberangel/CameraController.gd" id="2_q1yiq"]
+
+[sub_resource type="GDScript" id="GDScript_gm3xa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wl47m"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_edhat"]
 
 [node name="Player" type="Node3D"]
+script = SubResource("GDScript_gm3xa")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_ul5yv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_wl47m")
@@ -16,8 +23,10 @@ shape = SubResource("CapsuleShape3D_wl47m")
 mesh = SubResource("CapsuleMesh_edhat")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 fov = 90.0
+script = ExtResource("2_q1yiq")
 
 [node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
